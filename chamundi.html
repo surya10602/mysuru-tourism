@@ -15,6 +15,10 @@
         .sub-item img { width: 250px; height: 180px; object-fit: cover; border-radius: 8px; }
         .info h3 { color: #8b0000; margin-top: 0; }
         .location { font-size: 0.9rem; color: #666; margin-top: 10px; font-weight: bold; }
+        /* Map Styles */
+        .map-section { margin-top: 40px; }
+        .map-section h2 { color: #8b0000; border-bottom: 2px solid #8b0000; padding-bottom: 10px; }
+        .map-container { border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -25,7 +29,7 @@
         <a href="explore.html" class="back-link">← Back to Destinations</a>
         
         <div class="sub-item">
-            <img src="mahi.jpeg" alt="Mahishasura Statue">
+            <img src="mahi.jpg" alt="Mahishasura Statue">
             <div class="info">
                 <h3>Mahishasura Statue</h3>
                 <p>The colorful, iconic statue of the demon king Mahishasura holding a sword and a cobra. The city of Mysuru derives its name from Mahishasuru (the city of Mahishasura).</p>
@@ -48,6 +52,20 @@
                 <h3>Nandi Statue</h3>
                 <p>A colossal monolithic statue of Nandi (the sacred bull), standing 15 feet high and 24 feet long, carved from a single boulder.</p>
                 <div class="location">📍 Location: 800 steps down from the summit</div>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <h2>Location Map</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Chamundi+Hill,+Mysuru&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
             </div>
         </div>
     </div>
