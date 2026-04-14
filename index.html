@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <title>Visit Mysuru | The City of Palaces</title>
+    <style>
+        :root {
+            --primary-color: #8b0000;
+            --bg-color: #fcfcfc;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Updated Header with a cool illuminated Mysore Palace background */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Mysore_Palace_Illumination.jpg/1920px-Mysore_Palace_Illumination.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 15px auto 0;
+            color: #eeeeee;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+        
+        /* Grid and Cards */
+        .attractions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        /* Map */
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #eaeaea; /* Placeholder color while loading */
+        }
+
+        /* Modal (Popup) Styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+            border: none;
+            background: none;
+        }
+        .close-btn:hover {
+            color: var(--primary-color);
+        }
+        .sub-attraction {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .sub-attraction:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .sub-attraction img {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Mysuru</h1>
+        <p>Click on any location below to see what's inside and highlight it on the map.</p>
+    </header>
+
+    <div class="container">
+        <h2>Top Locations</h2>
+        <div class="attractions">
+            <div class="card" onclick="openLocation('palace')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Mysore_Palace_Morning.jpg/800px-Mysore_Palace_Morning.jpg" alt="Mysore Palace">
+                <div class="card-content">
+                    <h3>Mysore Palace</h3>
+                    <p>The historical palace and royal residence. Click to explore inside.</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="openLocation('chamundi')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Chamundeshwari_Temple.jpg/800px-Chamundeshwari_Temple.jpg" alt="Chamundi Hill">
+                <div class="card-content">
+                    <h3>Chamundi Hill</h3>
+                    <p>Famous for the Chamundeshwari Temple and panoramic views. Click to explore.</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="openLocation('brindavan')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Brindavan_Gardens_Mysore.jpg/800px-Brindavan_Gardens_Mysore.jpg" alt="Brindavan Gardens">
+                <div class="card-content">
+                    <h3>Brindavan Gardens</h3>
+                    <p>Famous terraced gardens adjoining the Krishnarajasagara Dam. Click to explore.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 id="map-section">Location Map</h2>
+        <p style="text-align: center; margin-top: -20px; color: #666;">The map updates automatically when you click a card above.</p>
+        <div class="map-container">
+            <iframe id="mysuru-map"
+                src="https://maps.google.com/maps?q=Mysuru&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="450" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h2 id="modal-title">Location Name</h2>
+            <div id="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Mysuru Tourism Project.</p>
+    </footer>
+
+    <script>
+        const locationData = {
+            palace: {
+                title: "Inside Mysore Palace",
+                mapQuery: "Mysore+Palace",
+                attractions: [
+                    {
+                        name: "Ambavilasa (Public Durbar Hall)",
+                        desc: "The magnificent hall where the king hosted major public gatherings. Known for its painted steel pillars and stained glass ceiling.",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Mysore_Palace_Durbar_Hall.jpg/640px-Mysore_Palace_Durbar_Hall.jpg"
+                    },
+                    {
+                        name: "Kalyana Mantapa (Marriage Pavilion)",
+                        desc: "A grand octagonal pavilion with a spectacular stained-glass ceiling featuring peacock motifs, used for royal weddings.",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Kalyana_Mantapa%2C_Mysore_Palace.jpg/640px-Kalyana_Mantapa%2C_Mysore_Palace.jpg"
+                    }
+                ]
+            },
+            chamundi: {
+                title: "On Chamundi Hill",
+                mapQuery: "Chamundi+Hill+Mysuru",
+                attractions: [
+                    {
+                        name: "Chamundeshwari Temple",
+                        desc: "A 17th-century temple dedicated to Goddess Chamundeshwari, featuring a massive seven-story intricately carved Gopuram.",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Chamundeshwari_Temple.jpg/640px-Chamundeshwari_Temple.jpg"
+                    },
+                    {
+                        name: "Nandi Statue",
+                        desc: "A colossal monolithic statue of Nandi (the sacred bull) carved out of a single piece of black granite, standing 15 feet high.",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Nandi_Bull_Chamundi_Hills.jpg/640px-Nandi_Bull_Chamundi_Hills.jpg"
+                    }
+                ]
+            },
+            brindavan: {
+                title: "At Brindavan Gardens",
+                mapQuery: "Brindavan+Gardens+Mysuru",
+                attractions: [
+                    {
+                        name: "Musical Fountain",
+                        desc: "The main attraction of the gardens, featuring water fountains synchronized to music and colorful laser lights in the evening.",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Brindavan_Gardens_Mysore.jpg/640px-Brindavan_Gardens_Mysore.jpg"
+                    },
+                    {
+                        name: "KRS Dam View",
+                        desc: "The garden is laid out below the massive Krishnarajasagara Dam across the river Cauvery, offering spectacular structural views.",
+                        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Krs_dam.jpg/640px-Krs_dam.jpg"
+                    }
+                ]
+            }
+        };
+
+        function openLocation(id) {
+            const data = locationData[id];
+            
+            // 1. Update the Map with the correct embedded URL syntax
+            const mapIframe = document.getElementById('mysuru-map');
+            mapIframe.src = `https://maps.google.com/maps?q=${data.mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+
+            // 2. Populate the Modal
+            document.getElementById('modal-title').innerText = data.title;
+            
+            let htmlContent = "";
+            data.attractions.forEach(attr => {
+                htmlContent += `
+                    <div class="sub-attraction">
+                        <img src="${attr.img}" alt="${attr.name}" onerror="this.src='https://via.placeholder.com/150x100?text=Image+Not+Found'">
+                        <div>
+                            <h4 style="margin: 0 0 5px 0; color: #8b0000;">${attr.name}</h4>
+                            <p style="margin: 0; font-size: 0.95rem;">${attr.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('modal-body').innerHTML = htmlContent;
+
+            // 3. Show the Modal
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Close modal if user clicks outside of the white box
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
