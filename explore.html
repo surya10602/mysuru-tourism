@@ -3,67 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Mysuru</title>
+    <meta name="referrer" content="no-referrer">
+    <title>Mysore Palace | Mysuru</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #111; color: white; }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            height: 100vh;
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f9f9f9; color: #333; }
+        .banner {
+            height: 60vh; background: url('front.jpg') center/cover;
+            display: flex; align-items: flex-end; justify-content: center;
         }
-        .column {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px;
-            background-size: cover;
-            background-position: center;
-            transition: flex 0.5s ease;
-        }
-        .column::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6); z-index: 1; transition: background 0.3s;
-        }
-        .column:hover::before { background: rgba(0,0,0,0.4); }
-        .content { position: relative; z-index: 2; }
-        h2 { font-size: 2.5rem; margin-bottom: 15px; }
-        p { margin-bottom: 30px; font-size: 1.1rem; }
-        .btn {
-            padding: 10px 30px; color: white; border: 2px solid white; text-decoration: none;
-            border-radius: 25px; font-weight: bold; transition: all 0.3s;
-        }
-        .btn:hover { background: white; color: #111; }
-        
-        /* Using your local images here */
-        .palace { background-image: url('Mysore-Palace.webp'); }
-        .chamundi { background-image: url('Chamundi hills.jpg'); }
-        .gardens { background-image: url('brindavan.jpg'); }
+        .banner h1 { background: rgba(0,0,0,0.7); color: white; padding: 20px 50px; margin: 0; font-size: 3rem; border-radius: 10px 10px 0 0; }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #8b0000; text-decoration: none; font-weight: bold; }
+        .sub-item { display: flex; gap: 20px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .sub-item img { width: 250px; height: 180px; object-fit: cover; border-radius: 8px; }
+        .info h3 { color: #8b0000; margin-top: 0; }
+        .location { font-size: 0.9rem; color: #666; margin-top: 10px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="grid-container">
-        <div class="column palace">
-            <div class="content">
-                <h2>Mysore Palace</h2>
-                <p>The crown jewel of the city, blending multiple architectural styles.</p>
-                <a href="palace.html" class="btn">View Details</a>
+    <div class="banner">
+        <h1>Mysore Palace</h1>
+    </div>
+    <div class="container">
+        <a href="explore.html" class="back-link">← Back to Destinations</a>
+        
+        <div class="sub-item">
+            <img src="av.jpeg" alt="Durbar Hall">
+            <div class="info">
+                <h3>Ambavilasa (Durbar Hall)</h3>
+                <p>The magnificent hall where the king hosted major public gatherings. Known for its painted steel pillars, stained glass ceiling, and intricate chandeliers.</p>
+                <div class="location">📍 Location: First Floor, Main Palace Building</div>
             </div>
         </div>
-        <div class="column chamundi">
-            <div class="content">
-                <h2>Chamundi Hills</h2>
-                <p>A sacred hill offering panoramic views and ancient temples.</p>
-                <a href="chamundi.html" class="btn">View Details</a>
-            </div>
-        </div>
-        <div class="column gardens">
-            <div class="content">
-                <h2>Brindavan Gardens</h2>
-                <p>Spectacular terraced gardens famous for musical fountains.</p>
-                <a href="brindavan.html" class="btn">View Details</a>
+
+        <div class="sub-item">
+            <img src="km.jpeg" alt="Kalyana Mantapa">
+            <div class="info">
+                <h3>Kalyana Mantapa (Marriage Pavilion)</h3>
+                <p>A grand octagonal pavilion with a spectacular stained-glass ceiling featuring peacock motifs, historically used for royal weddings.</p>
+                <div class="location">📍 Location: South Wing, Palace Complex</div>
             </div>
         </div>
     </div>
